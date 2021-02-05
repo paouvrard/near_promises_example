@@ -18,9 +18,15 @@ near dev-deploy --wasmFile target/wasm32-unknown-unknown/release/near_promises_e
 ```
 This creates a new account for the contract named dev-... with a single access keys controlled by near.
 
-### Call the contract at dev account
+### Deploy another contract to a new dev account on testnet
 ```
-export pr_a=dev-1612432902723-8766979
+near dev-deploy --wasmFile target/wasm32-unknown-unknown/release/near_promises_example.wasm
+```
 
-near call $pr_a call_b '{"account_id": "bb"}' --accountId opa_code.testnet
+### Call the contract at dev account which will return the result of a callback
+```
+export pr_a=dev-1612502168408-7726225
+export pr_b=dev-1612502422059-6077955
+
+near call $pr_a call_b '{"account_id": "'$pr_b'"}' --accountId opa_code.testnet
 ```
