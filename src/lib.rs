@@ -51,7 +51,13 @@ impl PromiseA {
         callback_a
     }
 
-    pub fn callback_receiver(&mut self, #[callback] promise_a_result: String, #[callback] promise_a_bis_result: String ) -> String {
+    pub fn callback_receiver(
+        &mut self,
+        #[callback] promise_a_result: String,
+        #[callback] promise_a_bis_result: String
+    ) -> String {
+        // or #[callback_vec] values: Vec<String>
+        // format!("on_data {:?", values)
         log!(
             "I'm A at @{}, called back by B @{}, promise_a_result: {}/{}",
             env::predecessor_account_id(),
